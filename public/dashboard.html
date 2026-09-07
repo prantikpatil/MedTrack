@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0f766e" />
+<title>MedTrack — Dashboard</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="brand-top"><div class="brand-logo"><span>✚</span></div><div class="wordmark">Med<span>Track</span></div></div>
+      <button class="mobile-close" id="mobile-close" aria-label="Close menu">×</button>
+    </div>
+
+    <div class="side-label">MAIN MENU</div>
+    <nav class="side-nav">
+      <button class="nav-item active" data-section="overview"><span class="nav-icon">⌂</span><span>Overview</span></button>
+      <button class="nav-item" data-section="reports"><span class="nav-icon">▣</span><span>Medical reports</span></button>
+      <button class="nav-item" data-section="profile"><span class="nav-icon">◯</span><span>My profile</span></button>
+    </nav>
+
+    <div class="sidebar-tip"><span>💡</span><div><b>Stay on track</b><small>Tap a dose time to mark it taken.</small></div></div>
+
+    <div class="sidebar-foot">
+      <div class="sidebar-user"><div class="avatar" id="avatar-initial"></div><div><div class="sidebar-user-name" id="user-name"></div><div class="sidebar-user-sub" id="user-disease"></div></div></div>
+      <div class="sidebar-actions"><button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">◐</button><button class="btn-ghost" id="logout-btn">Sign out</button></div>
+    </div>
+  </aside>
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  <main class="dash">
+    <header class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
+      <div><p class="topbar-kicker">PERSONAL HEALTH DASHBOARD</p><h1>Good to see you, <span id="topbar-name">there</span> 👋</h1></div>
+      <div class="topbar-date"><span class="status-dot"></span><span id="topbar-date">Today</span></div>
+    </header>
+
+    <section class="page-section active" id="section-overview">
+      <div class="hero-strip">
+        <div class="hero-copy"><p class="eyebrow-text" id="today-date"></p><h2 id="next-dose-title">Loading today's schedule…</h2><p class="hero-sub" id="next-dose-sub"></p><button class="hero-action" id="open-add-modal">+ Add medicine</button></div>
+        <div class="hero-progress"><div class="progress-ring"><svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="42"></circle><circle class="ring-value" id="progress-ring" cx="50" cy="50" r="42"></circle></svg><div><strong id="progress-percent">0%</strong><small>today</small></div></div><div class="hero-count"><b id="taken-count">0/0</b><span>doses logged</span></div></div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-icon mint">💊</div><div><span>Medicines</span><strong id="medicine-stat">0</strong><small>active schedules</small></div></div>
+        <div class="stat-card"><div class="stat-icon blue">✓</div><div><span>Taken today</span><strong id="taken-stat">0</strong><small>completed doses</small></div></div>
+        <div class="stat-card"><div class="stat-icon amber">◷</div><div><span>Next reminder</span><strong id="next-stat">—</strong><small id="next-stat-sub">No upcoming dose</small></div></div>
+        <div class="stat-card"><div class="stat-icon purple">▣</div><div><span>Reports</span><strong id="report-stat">0</strong><small>saved records</small></div></div>
+      </div>
+
+      <div class="content-grid">
+        <div class="main-column">
+          <div class="section-head"><div><span class="eyebrow">YOUR PLAN</span><h3>Your medicines</h3></div><button class="link-btn" id="open-add-modal-2">View + add</button></div>
+          <div class="med-list" id="med-list"><div class="empty-state">Loading…</div></div>
+        </div>
+        <aside class="side-column">
+          <div class="mini-card adherence-card"><div class="mini-head"><div><span class="eyebrow">TODAY</span><h4>Adherence</h4></div><span class="mini-check">✓</span></div><div class="adherence-score" id="adherence-score">0%</div><div class="adherence-bar"><span id="adherence-bar-fill"></span></div><p id="adherence-text">Add a medicine schedule to start tracking.</p></div>
+          <div class="mini-card"><div class="mini-head"><div><span class="eyebrow">QUICK NOTE</span><h4>Healthy habit</h4></div><span>🌿</span></div><p class="habit-text">Keep your medicines in a consistent place and follow the schedule recommended by your healthcare professional.</p></div>
+        </aside>
+      </div>
+
+      <div class="section-head history-head"><div><span class="eyebrow">ACTIVITY</span><h3>Recent history</h3></div></div>
+      <div class="history-list" id="history-list"><div class="empty-state">No history yet.</div></div>
+    </section>
+
+    <section class="page-section" id="section-reports">
+      <div class="page-title"><div><span class="eyebrow">DOCUMENT CENTER</span><h2>Medical reports</h2><p>Keep lab results, prescriptions, scans and other health records organized.</p></div><div class="title-icon">▣</div></div>
+      <div class="report-upload-card"><div class="upload-icon">↑</div><div class="upload-copy"><h3>Upload a new report</h3><p>PDF, JPG, PNG or WEBP · Maximum 10MB</p></div><form id="report-form" class="report-upload"><label class="file-picker"><input type="file" id="report-file" accept=".pdf,.jpg,.jpeg,.png,.webp" required /><span>Choose file</span></label><input type="text" id="report-notes" placeholder="Add a note (optional)" /><button type="submit" class="btn-primary report-upload-btn">Upload report</button></form></div>
+      <div class="form-message" id="report-message"></div>
+      <div class="section-head reports-head"><div><span class="eyebrow">YOUR RECORDS</span><h3>Saved reports</h3></div><span class="record-pill" id="report-count-label">0 records</span></div>
+      <div class="report-list" id="report-list"><div class="empty-state">No reports uploaded yet.</div></div>
+    </section>
+
+    <section class="page-section" id="section-profile">
+      <div class="page-title"><div><span class="eyebrow">ACCOUNT</span><h2>My profile</h2><p>Keep your personal information up to date.</p></div><div class="title-icon">◯</div></div>
+      <div class="profile-layout"><div class="profile-card profile-summary"><div class="large-avatar" id="profile-avatar">?</div><h3 id="profile-card-name">Your name</h3><p id="profile-card-condition">Your condition</p><div class="profile-badge">MedTrack member</div></div><form id="profile-form" class="profile-form profile-card"><div class="form-section-title">Personal information</div><div class="field"><label for="profile-name">Full name</label><input type="text" id="profile-name" required /></div><div class="field-row"><div class="field"><label for="profile-age">Age</label><input type="number" id="profile-age" min="1" max="130" required /></div><div class="field"><label for="profile-disease">Condition / diagnosis</label><input type="text" id="profile-disease" required /></div></div><div class="field"><label>Email address</label><input type="email" id="profile-email" disabled /></div><div class="form-message" id="profile-message"></div><button type="submit" class="btn-primary save-profile">Save changes</button></form></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop hidden" id="med-modal"><div class="modal"><div class="modal-top"><div><span class="eyebrow">MEDICATION</span><h3 id="modal-title">Add a medicine</h3></div><button type="button" class="modal-close" id="modal-x">×</button></div><form id="med-form"><input type="hidden" id="med-id" /><div class="field"><label for="med-name">Medicine name</label><input type="text" id="med-name" required placeholder="e.g. Metformin" /></div><div class="field"><label for="med-dosage">Dosage</label><input type="text" id="med-dosage" placeholder="e.g. 500mg, 1 tablet" /></div><div class="field"><label>Reminder times</label><div class="times-editor" id="times-editor"></div><div class="add-time-row"><input type="time" id="new-time-input" /><button type="button" class="btn-ghost" id="add-time-btn">Add time</button></div></div><div class="field"><label for="med-notes">Notes (optional)</label><input type="text" id="med-notes" placeholder="e.g. Take with food" /></div><div class="form-message" id="med-message"></div><div class="modal-actions"><button type="button" class="btn-secondary" id="cancel-modal">Cancel</button><button type="submit" class="btn-primary">Save medicine</button></div></form></div></div>
+
+<div class="modal-backdrop alarm-backdrop hidden" id="alarm-modal"><div class="alarm-card"><div class="alarm-icon">⏰</div><p class="alarm-eyebrow">DOSE REMINDER</p><h3 id="alarm-title">Medicine due</h3><p id="alarm-sub" class="alarm-sub"></p><div class="alarm-actions"><button class="btn-primary alarm-taken" id="alarm-taken-btn">✓ Mark as taken</button><button class="btn-secondary" id="alarm-snooze-btn">Snooze 5 min</button><button class="link-btn" id="alarm-dismiss-btn">Dismiss</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

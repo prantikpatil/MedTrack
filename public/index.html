@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0f766e" />
+<title>MedTrack — Your health, on schedule</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="auth-page">
+
+<div class="auth-shell">
+  <section class="auth-brand">
+    <div class="brand-top">
+      <div class="brand-logo"><span>✚</span></div>
+      <div class="wordmark">Med<span>Track</span></div>
+    </div>
+
+    <div class="brand-content">
+      <span class="brand-badge">SMART MEDICINE MANAGEMENT</span>
+      <h1>Your health,<br><em>on schedule.</em></h1>
+      <p>One calm place to manage medicines, reminders, medical reports and your patient profile.</p>
+      <div class="brand-points">
+        <div><span>✓</span><b>Smart reminders</b><small>Never lose track of a dose.</small></div>
+        <div><span>✓</span><b>Secure reports</b><small>Keep important records together.</small></div>
+        <div><span>✓</span><b>Simple dashboard</b><small>See what matters at a glance.</small></div>
+      </div>
+    </div>
+
+    <div class="brand-foot"><span class="pulse-dot"></span> Built for a calmer daily routine</div>
+  </section>
+
+  <section class="auth-panel">
+    <div class="auth-card">
+      <div class="mobile-brand"><div class="brand-logo"><span>✚</span></div><div class="wordmark">Med<span>Track</span></div></div>
+      <div class="auth-heading">
+        <span class="eyebrow">WELCOME BACK</span>
+        <h2>Take care of your health.</h2>
+        <p>Sign in to continue to your personal dashboard.</p>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Sign in</button>
+        <button class="auth-tab" data-tab="register">Create account</button>
+      </div>
+
+      <form id="login-form">
+        <div class="field"><label for="login-email">Email address</label><input type="email" id="login-email" required autocomplete="email" placeholder="you@example.com" /></div>
+        <div class="field"><label for="login-password">Password</label><input type="password" id="login-password" required autocomplete="current-password" placeholder="Enter your password" /></div>
+        <button type="submit" class="btn-primary btn-large"><span>Sign in</span><b>→</b></button>
+        <div class="form-message" id="login-message"></div>
+      </form>
+
+      <form id="register-form" style="display:none;">
+        <div class="field"><label for="reg-name">Full name</label><input type="text" id="reg-name" required autocomplete="name" placeholder="Your full name" /></div>
+        <div class="field-row"><div class="field"><label for="reg-age">Age</label><input type="number" id="reg-age" min="1" max="130" required placeholder="Age" /></div><div class="field"><label for="reg-disease">Condition / diagnosis</label><input type="text" id="reg-disease" required placeholder="e.g. Diabetes" /></div></div>
+        <div class="field"><label for="reg-email">Email address</label><input type="email" id="reg-email" required autocomplete="email" placeholder="you@example.com" /></div>
+        <div class="field"><label for="reg-password">Password</label><input type="password" id="reg-password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters" /></div>
+        <button type="submit" class="btn-primary btn-large"><span>Create account</span><b>→</b></button>
+        <div class="form-message" id="register-message"></div>
+      </form>
+
+      <div class="form-hint"><span>🔒</span> Your health information stays private to your account.</div>
+    </div>
+  </section>
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>
